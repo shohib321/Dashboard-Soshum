@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Data Riset Sosial Humaniora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            secondary: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              800: '#1e293b',
+              900: '#0f172a',
+            }
+          },
+          fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'slide-up': 'slideUp 0.5s ease-out',
+            'fade-in': 'fadeIn 0.6s ease-in',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f0f9ff 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* Animasi yang diperbaiki */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    /* Efek card yang ditingkatkan */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+      border-color: rgba(59, 130, 246, 0.1);
+    }
+    
+    /* Stat card gradient yang ditingkatkan */
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: float 20s linear infinite;
+      opacity: 0.3;
+    }
+    
+    .stat-card-blue {
+      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-card-blue::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: float 20s linear infinite;
+      opacity: 0.3;
+    }
+    
+    /* Tombol back yang ditingkatkan */
+    .btn-back {
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-back:hover {
+      transform: translateX(-8px);
+      background-color: rgba(59, 130, 246, 0.2);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+    }
+    
+    /* Loading spinner yang lebih smooth */
+    .loading-spinner {
+      border: 4px solid rgba(243, 244, 246, 0.3);
+      border-top: 4px solid #ffffff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Iframe container yang responsif */
+    .iframe-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Header glassmorphism effect */
+    .glass-header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Footer yang lebih menarik */
+    .glass-footer {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Responsif untuk mobile */
+    @media (max-width: 640px) {
+      .stat-card, .stat-card-blue {
+        padding: 1.5rem 1rem !important;
+      }
+      
+      .card-hover {
+        padding: 1.5rem !important;
+      }
+      
+      .stat-card div:first-child,
+      .stat-card-blue div:first-child {
+        font-size: 2rem !important;
+      }
+      
+      #siswaCount, #kelompokCount {
+        font-size: 2rem !important;
+      }
+      
+      h2 {
+        font-size: 1.25rem !important;
+      }
+      
+      .btn-back {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.875rem !important;
+      }
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(59, 130, 246, 0.05);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    }
+    
+    /* Efek ikon yang ditingkatkan */
+    .icon-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    /* Card shadow yang lebih halus */
+    .card-shadow {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+  </style>
+ </head>
+ <body class="h-full">
+  <!-- Main Container -->
+  <div id="app" class="h-full w-full flex flex-col overflow-hidden">
+   <!-- Header -->
+   <header class="glass-header slide-up sticky top-0 z-50 py-5 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+     <h1 class="text-2xl md:text-3xl font-bold text-center text-primary-800">
+      <span class="inline-block icon-float">📊</span> Dashboard Data Riset Sosial Humaniora
+     </h1>
+     <p class="text-center text-secondary-600 text-sm md:text-base mt-2">
+      Platform Interaktif untuk Eksplorasi Data Siswa dan Kelompok Riset
+     </p>
+    </div>
+   </header>
+   
+   <!-- Main Content Area -->
+   <main class="flex-1 w-full overflow-y-auto overflow-x-hidden">
+    <!-- Dashboard View -->
+    <div id="dashboardView" class="fade-in w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+     <!-- Stats Cards -->
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-16">
+      <!-- Siswa Riset Card -->
+      <div class="stat-card-blue slide-up rounded-2xl p-6 md:p-8 shadow-2xl text-white text-center relative overflow-hidden">
+       <div class="absolute top-4 right-4 opacity-20 text-5xl">
+        👩‍🎓
+       </div>
+       <div class="text-4xl md:text-5xl mb-4 icon-float">
+        👩‍🎓
+       </div>
+       <div class="text-3xl md:text-4xl font-bold mb-2 relative z-10" id="siswaCount">
+        <div class="loading-spinner mx-auto"></div>
+       </div>
+       <div class="text-base md:text-lg font-medium opacity-90">
+        Siswa Riset
+       </div>
+       <div class="text-xs md:text-sm opacity-70 mt-2">
+        Total peserta penelitian
+       </div>
+      </div>
+      
+      <!-- Kelompok Riset Card -->
+      <div class="stat-card slide-up rounded-2xl p-6 md:p-8 shadow-2xl text-white text-center relative overflow-hidden" style="animation-delay: 0.1s">
+       <div class="absolute top-4 right-4 opacity-20 text-5xl">
+        🤝
+       </div>
+       <div class="text-4xl md:text-5xl mb-4 icon-float">
+        🤝
+       </div>
+       <div class="text-3xl md:text-4xl font-bold mb-2 relative z-10" id="kelompokCount">
+        <div class="loading-spinner mx-auto"></div>
+       </div>
+       <div class="text-base md:text-lg font-medium opacity-90">
+        Kelompok Riset
+       </div>
+       <div class="text-xs md:text-sm opacity-70 mt-2">
+        Tim penelitian aktif
+       </div>
+      </div>
+     </div>
+     
+     <!-- Menu Cards -->
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+      <!-- Data Siswa Card -->
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 md:p-8 card-shadow cursor-pointer"
+           onclick="openContent('siswa')"
+           style="animation-delay: 0.2s">
+       <div class="flex flex-col items-center text-center">
+        <div class="text-6xl md:text-7xl mb-6 icon-float">
+         👩‍🎓
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-primary-700 mb-4">
+         Data Siswa Riset
+        </h2>
+        <p class="text-secondary-600 text-sm md:text-base leading-relaxed mb-6">
+         Jelajahi data lengkap siswa peserta riset Sosial Humaniora dengan informasi detail, foto, dan progress penelitian masing-masing.
+        </p>
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+         <span class="flex items-center justify-center gap-2">
+          Buka Dashboard <i class="fas fa-arrow-right text-sm"></i>
+         </span>
+        </div>
+        <div class="mt-6 pt-4 border-t border-secondary-100 w-full">
+         <div class="flex justify-center items-center gap-4 text-xs text-secondary-500">
+          <span class="flex items-center gap-1">
+            <i class="fas fa-user text-primary-500"></i> Profil Lengkap
+          </span>
+          <span class="flex items-center gap-1">
+            <i class="fas fa-image text-primary-500"></i> Foto
+          </span>
+          <span class="flex items-center gap-1">
+            <i class="fas fa-chart-line text-primary-500"></i> Progress
+          </span>
+         </div>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Data Kelompok Card -->
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 md:p-8 card-shadow cursor-pointer"
+           onclick="openContent('kelompok')"
+           style="animation-delay: 0.3s">
+       <div class="flex flex-col items-center text-center">
+        <div class="text-6xl md:text-7xl mb-6 icon-float">
+         🤝
+        </div>
+        <h2 class="text-xl md:text-2xl font-bold text-primary-700 mb-4">
+         Kelompok Sosial Humaniora
+        </h2>
+        <p class="text-secondary-600 text-sm md:text-base leading-relaxed mb-6">
+         Telusuri struktur organisasi, pembagian tim, dan dinamika kelompok riset dalam bidang Sosial Humaniora.
+        </p>
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+         <span class="flex items-center justify-center gap-2">
+          Eksplorasi Kelompok <i class="fas fa-arrow-right text-sm"></i>
+         </span>
+        </div>
+        <div class="mt-6 pt-4 border-t border-secondary-100 w-full">
+         <div class="flex justify-center items-center gap-4 text-xs text-secondary-500">
+          <span class="flex items-center gap-1">
+            <i class="fas fa-users text-purple-500"></i> Struktur Tim
+          </span>
+          <span class="flex items-center gap-1">
+            <i class="fas fa-project-diagram text-purple-500"></i> Jaringan
+          </span>
+          <span class="flex items-center gap-1">
+            <i class="fas fa-tasks text-purple-500"></i> Pembagian Tugas
+          </span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     
+     <!-- Informasi Tambahan -->
+     <div class="mt-12 md:mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 card-shadow slide-up" style="animation-delay: 0.4s">
+      <div class="text-center">
+       <h3 class="text-lg md:text-xl font-bold text-primary-800 mb-4">
+        <i class="fas fa-info-circle text-primary-600 mr-2"></i> Tentang Dashboard Ini
+       </h3>
+       <p class="text-secondary-600 text-sm md:text-base max-w-3xl mx-auto">
+        Dashboard ini menyediakan akses terintegrasi ke data riset Sosial Humaniora. Semua data ditampilkan secara real-time dalam satu platform yang responsif dan mudah digunakan.
+       </p>
+       <div class="flex flex-wrap justify-center gap-6 mt-6 text-xs md:text-sm">
+        <div class="flex items-center gap-2 text-primary-700">
+          <i class="fas fa-sync-alt"></i>
+          <span>Data Real-time</span>
+        </div>
+        <div class="flex items-center gap-2 text-primary-700">
+          <i class="fas fa-mobile-alt"></i>
+          <span>Responsif</span>
+        </div>
+        <div class="flex items-center gap-2 text-primary-700">
+          <i class="fas fa-shield-alt"></i>
+          <span>Aman & Terpercaya</span>
+        </div>
+        <div class="flex items-center gap-2 text-primary-700">
+          <i class="fas fa-bolt"></i>
+          <span>Cepat & Ringan</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    
+    <!-- Content View (Hidden by default) -->
+    <div id="contentView" class="h-full w-full hidden relative bg-white">
+     <!-- Back Button -->
+     <button id="backButton" onclick="backToDashboard()" 
+             class="btn-back absolute top-4 left-4 md:top-6 md:left-6 z-50 bg-white/90 py-3 px-5 rounded-xl shadow-lg border border-white/30 flex items-center gap-3 hover:gap-4 transition-all duration-300">
+      <i class="fas fa-arrow-left text-primary-600 text-lg"></i>
+      <span class="font-semibold text-primary-700">Kembali ke Dashboard</span>
+     </button>
+     
+     <!-- Loading overlay -->
+     <div id="loadingOverlay" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-40 hidden">
+       <div class="text-center">
+         <div class="loading-spinner mb-4"></div>
+         <p class="text-primary-700 font-semibold">Memuat data...</p>
+       </div>
+     </div>
+     
+     <!-- Iframe Container -->
+     <div class="iframe-container h-full w-full">
+      <iframe id="contentFrame" class="w-full h-full"></iframe>
+     </div>
+    </div>
+   </main>
+   
+   <!-- Footer -->
+   <footer class="glass-footer py-5 px-4 md:px-8 text-center">
+    <div class="max-w-7xl mx-auto">
+     <p class="text-secondary-600 text-sm md:text-base mb-2">
+      © 2026 Data Riset Soshum | Shohib Furqon Farizi
+     </p>
+     <div class="flex justify-center items-center gap-4 text-xs text-secondary-500">
+      </span>
+      <span class="hidden md:inline">•</span>
+      <span class="flex items-center gap-1">
+        <i class="fas fa-map-marker-alt"></i> SMA Unggulan Haf-Sa Zainul Hasan BPPT Genggong
+      </span>
+     </div>
+    </div>
+   </footer>
+  </div>
+
+  <script>
+    // Google Sheets URLs for data fetching
+    const SISWA_SHEET_ID = '1MyH_2bsqGYi-iVBa4sM7poBnDScK7EO88GAdO2F_j88';
+    const SISWA_GID = '168704249';
+    const KELOMPOK_SHEET_ID = '1YPD4iWjoDN59wKtCXFomwjAcIrAjGLWir8Ul-4imlpI';
+    const KELOMPOK_GID = '561455291';
+    
+    // Fetch count from Google Sheets using Visualization API
+    async function fetchSheetCount(sheetId, gid) {
+      try {
+        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+        const response = await fetch(url);
+        const text = await response.text();
+        
+        const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\((.*)\);/);
+        if (!jsonMatch) return 0;
+        
+        const data = JSON.parse(jsonMatch[1]);
+        const rowCount = data.table.rows.length;
+        return rowCount;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return 0;
+      }
+    }
+    
+    // Animate number counter dengan efek yang lebih smooth
+    function animateCounter(element, target) {
+      let current = 0;
+      const duration = 1500; // ms
+      const increment = target / (duration / 16); // 60fps
+      const startTime = Date.now();
+      
+      function updateCounter() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function untuk animasi lebih smooth
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        current = Math.floor(target * easeOut);
+        
+        element.textContent = current.toLocaleString();
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target.toLocaleString();
+          // Tambahkan efek setelah animasi selesai
+          element.classList.add('text-white');
+        }
+      }
+      
+      updateCounter();
+    }
+    
+    // Load dashboard data
+    async function loadDashboardData() {
+      try {
+        const [siswaCount, kelompokCount] = await Promise.all([
+          fetchSheetCount(SISWA_SHEET_ID, SISWA_GID),
+          fetchSheetCount(KELOMPOK_SHEET_ID, KELOMPOK_GID)
+        ]);
+        
+        const siswaElement = document.getElementById('siswaCount');
+        const kelompokElement = document.getElementById('kelompokCount');
+        
+        // Tambahkan sedikit delay untuk efek visual
+        setTimeout(() => {
+          animateCounter(siswaElement, siswaCount);
+        }, 300);
+        
+        setTimeout(() => {
+          animateCounter(kelompokElement, kelompokCount);
+        }, 600);
+      } catch (error) {
+        console.error('Error loading dashboard data:', error);
+        document.getElementById('siswaCount').textContent = '0';
+        document.getElementById('kelompokCount').textContent = '0';
+      }
+    }
+    
+    // Open content in iframe dengan efek loading
+    function openContent(type) {
+      const dashboardView = document.getElementById('dashboardView');
+      const contentView = document.getElementById('contentView');
+      const contentFrame = document.getElementById('contentFrame');
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      
+      let url = '';
+      let title = '';
+      
+      if (type === 'siswa') {
+        url = 'https://shohib321.github.io/data-siswa-soshum-foto/';
+        title = 'Data Siswa Riset';
+      } else if (type === 'kelompok') {
+        url = 'https://shohib321.github.io/Data-kelompok-soshum/';
+        title = 'Data Kelompok Riset';
+      }
+      
+      // Tampilkan loading overlay
+      loadingOverlay.classList.remove('hidden');
+      
+      // Hide dashboard dan show content view
+      dashboardView.style.display = 'none';
+      contentView.style.display = 'block';
+      contentView.classList.add('fade-in');
+      
+      // Set iframe src
+      contentFrame.src = url;
+      
+      // Sembunyikan loading setelah iframe dimuat
+      contentFrame.onload = function() {
+        loadingOverlay.classList.add('hidden');
+        // Tambahkan efek transisi
+        contentFrame.classList.add('opacity-100');
+      };
+      
+      // Update title di browser (opsional)
+      document.title = title + ' | Dashboard Data Riset Soshum';
+    }
+    
+    // Back to dashboard dengan efek smooth
+    function backToDashboard() {
+      const dashboardView = document.getElementById('dashboardView');
+      const contentView = document.getElementById('contentView');
+      const contentFrame = document.getElementById('contentFrame');
+      
+      // Tambahkan efek transisi keluar
+      contentView.classList.remove('fade-in');
+      contentView.classList.add('opacity-0');
+      
+      setTimeout(() => {
+        contentView.style.display = 'none';
+        contentView.classList.remove('opacity-0');
+        dashboardView.style.display = 'block';
+        dashboardView.classList.add('fade-in');
+        contentFrame.src = '';
+        
+        // Reset title
+        document.title = 'Dashboard Data Riset Sosial Humaniora';
+        
+        // Scroll ke atas
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 300);
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', () => {
+      // Load data setelah halaman siap
+      setTimeout(loadDashboardData, 500);
+      
+      // Tambahkan event listener untuk card hover efek
+      const cards = document.querySelectorAll('.card-hover');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.zIndex = '10';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.zIndex = '1';
+        });
+      });
+      
+      // Tambahkan efek parallax pada scroll
+      window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const background = document.querySelector('body');
+        background.style.backgroundPosition = `0px ${scrolled * 0.5}px`;
+      });
+    });
+    
+    // Tambahkan keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('contentView').style.display === 'block') {
+        backToDashboard();
+      }
+    });
+  </script>
+ </body>
+</html>
