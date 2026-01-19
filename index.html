@@ -314,87 +314,173 @@
       </div>
      </div>
      
-     <!-- Menu Cards -->
-     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+     <!-- Menu Cards Grid -->
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-16">
       <!-- Data Siswa Card -->
-      <div class="card-hover slide-up bg-white rounded-2xl p-6 md:p-8 card-shadow cursor-pointer"
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 card-shadow cursor-pointer"
            onclick="openContent('siswa')"
            style="animation-delay: 0.2s">
-       <div class="flex flex-col items-center text-center">
-        <div class="text-6xl md:text-7xl mb-6 icon-float">
+       <div class="flex flex-col items-center text-center h-full">
+        <div class="text-6xl mb-6 icon-float text-primary-600">
          👩‍🎓
         </div>
-        <h2 class="text-xl md:text-2xl font-bold text-primary-700 mb-4">
+        <h2 class="text-xl font-bold text-primary-700 mb-4">
          Data Siswa Riset
         </h2>
-        <p class="text-secondary-600 text-sm md:text-base leading-relaxed mb-6">
+        <p class="text-secondary-600 text-sm leading-relaxed mb-6 flex-grow">
          Jelajahi data lengkap siswa peserta riset Sosial Humaniora dengan informasi detail, foto, dan progress penelitian masing-masing.
         </p>
-        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full">
          <span class="flex items-center justify-center gap-2">
           Buka Dashboard <i class="fas fa-arrow-right text-sm"></i>
          </span>
-        </div>
-        <div class="mt-6 pt-4 border-t border-secondary-100 w-full">
-         <div class="flex justify-center items-center gap-4 text-xs text-secondary-500">
-          <span class="flex items-center gap-1">
-            <i class="fas fa-user text-primary-500"></i> Profil Lengkap
-          </span>
-          <span class="flex items-center gap-1">
-            <i class="fas fa-image text-primary-500"></i> Foto
-          </span>
-          <span class="flex items-center gap-1">
-            <i class="fas fa-chart-line text-primary-500"></i> Progress
-          </span>
-         </div>
         </div>
        </div>
       </div>
       
       <!-- Data Kelompok Card -->
-      <div class="card-hover slide-up bg-white rounded-2xl p-6 md:p-8 card-shadow cursor-pointer"
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 card-shadow cursor-pointer"
            onclick="openContent('kelompok')"
            style="animation-delay: 0.3s">
-       <div class="flex flex-col items-center text-center">
-        <div class="text-6xl md:text-7xl mb-6 icon-float">
+       <div class="flex flex-col items-center text-center h-full">
+        <div class="text-6xl mb-6 icon-float text-purple-600">
          🤝
         </div>
-        <h2 class="text-xl md:text-2xl font-bold text-primary-700 mb-4">
+        <h2 class="text-xl font-bold text-purple-700 mb-4">
          Kelompok Sosial Humaniora
         </h2>
-        <p class="text-secondary-600 text-sm md:text-base leading-relaxed mb-6">
+        <p class="text-secondary-600 text-sm leading-relaxed mb-6 flex-grow">
          Telusuri struktur organisasi, pembagian tim, dan dinamika kelompok riset dalam bidang Sosial Humaniora.
         </p>
-        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full">
          <span class="flex items-center justify-center gap-2">
           Eksplorasi Kelompok <i class="fas fa-arrow-right text-sm"></i>
          </span>
         </div>
-        <div class="mt-6 pt-4 border-t border-secondary-100 w-full">
-         <div class="flex justify-center items-center gap-4 text-xs text-secondary-500">
-          <span class="flex items-center gap-1">
-            <i class="fas fa-users text-purple-500"></i> Struktur Tim
-          </span>
-          <span class="flex items-center gap-1">
-            <i class="fas fa-project-diagram text-purple-500"></i> Jaringan
-          </span>
-          <span class="flex items-center gap-1">
-            <i class="fas fa-tasks text-purple-500"></i> Pembagian Tugas
-          </span>
-         </div>
+       </div>
+      </div>
+      
+      <!-- Aplikasi Sitasi Card -->
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 card-shadow cursor-pointer"
+           onclick="openContent('sitasi')"
+           style="animation-delay: 0.4s">
+       <div class="flex flex-col items-center text-center h-full">
+        <div class="text-6xl mb-6 icon-float text-green-600">
+         📚
+        </div>
+        <h2 class="text-xl font-bold text-green-700 mb-4">
+         Aplikasi Sitasi
+        </h2>
+        <p class="text-secondary-600 text-sm leading-relaxed mb-6 flex-grow">
+         Alat pembuatan sitasi akademik yang membantu dalam penulisan daftar pustaka dengan berbagai format seperti APA, MLA, Chicago.
+        </p>
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full">
+         <span class="flex items-center justify-center gap-2">
+          Gunakan Aplikasi <i class="fas fa-arrow-right text-sm"></i>
+         </span>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Tool Referensi Card -->
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 card-shadow cursor-pointer"
+           onclick="openContent('referensi')"
+           style="animation-delay: 0.5s">
+       <div class="flex flex-col items-center text-center h-full">
+        <div class="text-6xl mb-6 icon-float text-amber-600">
+         🔧
+        </div>
+        <h2 class="text-xl font-bold text-amber-700 mb-4">
+         Tool Referensi
+        </h2>
+        <p class="text-secondary-600 text-sm leading-relaxed mb-6 flex-grow">
+         Kumpulan alat dan referensi untuk penulisan jurnal ilmiah, termasuk template, panduan, dan contoh-contoh terbaik.
+        </p>
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full">
+         <span class="flex items-center justify-center gap-2">
+          Akses Tools <i class="fas fa-arrow-right text-sm"></i>
+         </span>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Prestasi Siswa Card -->
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 card-shadow cursor-pointer"
+           onclick="openContent('prestasi')"
+           style="animation-delay: 0.6s">
+       <div class="flex flex-col items-center text-center h-full">
+        <div class="text-6xl mb-6 icon-float text-red-600">
+         🏆
+        </div>
+        <h2 class="text-xl font-bold text-red-700 mb-4">
+         Prestasi Siswa
+        </h2>
+        <p class="text-secondary-600 text-sm leading-relaxed mb-6 flex-grow">
+         Katalog prestasi siswa Sosial Humaniora dalam berbagai kompetisi, lomba, dan penghargaan yang telah diraih.
+        </p>
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full">
+         <span class="flex items-center justify-center gap-2">
+          Lihat Prestasi <i class="fas fa-arrow-right text-sm"></i>
+         </span>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Materi Pembelajaran Card -->
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 card-shadow cursor-pointer"
+           onclick="openContent('materi')"
+           style="animation-delay: 0.7s">
+       <div class="flex flex-col items-center text-center h-full">
+        <div class="text-6xl mb-6 icon-float text-blue-600">
+         📖
+        </div>
+        <h2 class="text-xl font-bold text-blue-700 mb-4">
+         Materi Pembelajaran
+        </h2>
+        <p class="text-secondary-600 text-sm leading-relaxed mb-6 flex-grow">
+         Kumpulan materi pembelajaran Sosial Humaniora yang lengkap dan terstruktur untuk mendukung proses belajar mengajar.
+        </p>
+        <div class="mt-4 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full">
+         <span class="flex items-center justify-center gap-2">
+          Pelajari Materi <i class="fas fa-arrow-right text-sm"></i>
+         </span>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Event Lomba Card -->
+      <div class="card-hover slide-up bg-white rounded-2xl p-6 card-shadow cursor-pointer col-span-1 md:col-span-2 lg:col-span-3"
+           onclick="openContent('event')"
+           style="animation-delay: 0.8s">
+       <div class="flex flex-col md:flex-row items-center text-center md:text-left">
+        <div class="text-6xl mb-6 md:mb-0 md:mr-8 icon-float text-indigo-600">
+         🎯
+        </div>
+        <div class="flex-grow">
+         <h2 class="text-2xl font-bold text-indigo-700 mb-4">
+          Event & Lomba
+         </h2>
+         <p class="text-secondary-600 text-base leading-relaxed mb-6 max-w-3xl mx-auto md:mx-0">
+          Informasi tentang event, kompetisi, dan lomba terkini yang relevan dengan bidang Sosial Humaniora. Dapatkan update terbaru tentang peluang kompetisi.
+         </p>
+        </div>
+        <div class="mt-4 md:mt-0 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+         <span class="flex items-center justify-center gap-2 text-lg">
+          Lihat Events <i class="fas fa-calendar-alt text-sm"></i>
+         </span>
         </div>
        </div>
       </div>
      </div>
      
      <!-- Informasi Tambahan -->
-     <div class="mt-12 md:mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 card-shadow slide-up" style="animation-delay: 0.4s">
+     <div class="mt-12 md:mt-16 bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 card-shadow slide-up" style="animation-delay: 0.9s">
       <div class="text-center">
        <h3 class="text-lg md:text-xl font-bold text-primary-800 mb-4">
         <i class="fas fa-info-circle text-primary-600 mr-2"></i> Tentang Dashboard Ini
        </h3>
        <p class="text-secondary-600 text-sm md:text-base max-w-3xl mx-auto">
-        Dashboard ini menyediakan akses terintegrasi ke data riset Sosial Humaniora. Semua data ditampilkan secara real-time dalam satu platform yang responsif dan mudah digunakan.
+        Dashboard ini menyediakan akses terintegrasi ke data riset Sosial Humaniora dan berbagai sumber daya pendukung. Semua data ditampilkan secara real-time dalam satu platform yang responsif dan mudah digunakan.
        </p>
        <div class="flex flex-wrap justify-center gap-6 mt-6 text-xs md:text-sm">
         <div class="flex items-center gap-2 text-primary-700">
@@ -412,6 +498,10 @@
         <div class="flex items-center gap-2 text-primary-700">
           <i class="fas fa-bolt"></i>
           <span>Cepat & Ringan</span>
+        </div>
+        <div class="flex items-center gap-2 text-primary-700">
+          <i class="fas fa-link"></i>
+          <span>7 Fitur Terintegrasi</span>
         </div>
        </div>
       </div>
@@ -449,10 +539,12 @@
       © 2026 Data Riset Soshum | Shohib Furqon Farizi
      </p>
      <div class="flex justify-center items-center gap-4 text-xs text-secondary-500">
+      <span class="flex items-center gap-1">
+        <i class="fas fa-map-marker-alt"></i> SMA Unggulan Haf-Sa Zainul Hasan BPPT Genggong
       </span>
       <span class="hidden md:inline">•</span>
       <span class="flex items-center gap-1">
-        <i class="fas fa-map-marker-alt"></i> SMA Unggulan Haf-Sa Zainul Hasan BPPT Genggong
+        <i class="fas fa-th-large"></i> 7 Fitur Terintegrasi
       </span>
      </div>
     </div>
@@ -465,6 +557,13 @@
     const SISWA_GID = '168704249';
     const KELOMPOK_SHEET_ID = '1YPD4iWjoDN59wKtCXFomwjAcIrAjGLWir8Ul-4imlpI';
     const KELOMPOK_GID = '561455291';
+    
+    // URL untuk menu baru
+    const URL_SITASI = 'https://shohib321.github.io/aplikasi-sitasi/';
+    const URL_REFERENSI = 'https://shohib321.github.io/tool-jurnal/';
+    const URL_PRESTASI = 'https://shohib321.github.io/Prestasi-sosial-humaniora/';
+    const URL_MATERI = 'https://shohib321.github.io/materi-sosial-humaniora/';
+    const URL_EVENT = 'https://shohib321.github.io/Events-Lomba/';
     
     // Fetch count from Google Sheets using Visualization API
     async function fetchSheetCount(sheetId, gid) {
@@ -556,6 +655,21 @@
       } else if (type === 'kelompok') {
         url = 'https://shohib321.github.io/Data-kelompok-soshum/';
         title = 'Data Kelompok Riset';
+      } else if (type === 'sitasi') {
+        url = URL_SITASI;
+        title = 'Aplikasi Sitasi';
+      } else if (type === 'referensi') {
+        url = URL_REFERENSI;
+        title = 'Tool Referensi';
+      } else if (type === 'prestasi') {
+        url = URL_PRESTASI;
+        title = 'Prestasi Siswa';
+      } else if (type === 'materi') {
+        url = URL_MATERI;
+        title = 'Materi Pembelajaran';
+      } else if (type === 'event') {
+        url = URL_EVENT;
+        title = 'Event & Lomba';
       }
       
       // Tampilkan loading overlay
@@ -576,7 +690,7 @@
         contentFrame.classList.add('opacity-100');
       };
       
-      // Update title di browser (opsional)
+      // Update title di browser
       document.title = title + ' | Dashboard Data Riset Soshum';
     }
     
