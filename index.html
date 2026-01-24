@@ -83,6 +83,9 @@
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'slide-up': 'slideUp 0.5s ease-out',
             'fade-in': 'fadeIn 0.6s ease-in',
+            'bounce-slow': 'bounce 2s infinite',
+            'fade-in-up': 'fadeInUp 0.8s ease-out',
+            'scale-in': 'scaleIn 0.5s ease-out',
           }
         }
       }
@@ -111,6 +114,28 @@
       }
     }
     
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
     @keyframes slideUp {
       from {
         opacity: 0;
@@ -128,6 +153,42 @@
       }
       50% {
         transform: translateY(-10px);
+      }
+    }
+    
+    /* Welcome Page Styles */
+    .welcome-page {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      padding: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding: 20px;
+      }
+      
+      .hero-image {
+        order: 2;
+      }
+      
+      .hero-content {
+        order: 1;
       }
     }
     
@@ -209,6 +270,18 @@
       box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
     }
     
+    /* Tombol Masuk yang ditingkatkan */
+    .btn-enter {
+      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn-enter:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+    }
+    
     /* Loading spinner yang lebih smooth */
     .loading-spinner {
       border: 4px solid rgba(243, 244, 246, 0.3);
@@ -275,6 +348,11 @@
         padding: 0.5rem 1rem !important;
         font-size: 0.875rem !important;
       }
+      
+      .hero-image img {
+        max-width: 280px !important;
+        margin: 0 auto;
+      }
     }
     
     /* Custom scrollbar */
@@ -304,11 +382,78 @@
     .card-shadow {
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
+    
+    /* Welcome image container */
+    .welcome-img-container {
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.1));
+      transition: all 0.5s ease;
+    }
+    
+    .welcome-img-container:hover {
+      filter: drop-shadow(0 30px 40px rgba(59, 130, 246, 0.2));
+      transform: translateY(-10px);
+    }
   </style>
  </head>
  <body class="h-full">
-  <!-- Main Container -->
-  <div id="app" class="h-full w-full flex flex-col overflow-hidden">
+  <!-- Welcome Page (Initially visible) -->
+  <div id="welcomePage" class="welcome-page fade-in">
+    <div class="hero-container">
+      <div class="hero-content flex-1">
+        <div class="mb-6">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-600 rounded-full text-sm font-semibold animate-bounce-slow">
+            <i class="fas fa-graduation-cap mr-2"></i>Kelas Riset Sosial Humaniora
+          </span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 animate-fade-in-up">
+          Selamat Datang di<br>
+          <span class="text-primary-600">Dashboard Riset Soshum</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
+          Platform terintegrasi untuk eksplorasi data siswa, kelompok riset, dan berbagai alat pendukung penelitian Sosial Humaniora. Mulai perjalanan riset Anda di sini!
+        </p>
+        
+        <div class="flex flex-wrap gap-4 mb-10 animate-fade-in-up" style="animation-delay: 0.4s">
+          <div class="flex items-center gap-2 text-gray-700">
+            <i class="fas fa-check-circle text-success-500"></i>
+            <span>Data Real-time</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-700">
+            <i class="fas fa-check-circle text-success-500"></i>
+            <span>Tools Riset Lengkap</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-700">
+            <i class="fas fa-check-circle text-success-500"></i>
+            <span>Interface User-Friendly</span>
+          </div>
+        </div>
+        
+        <button onclick="enterDashboard()" 
+                class="btn-enter px-8 py-4 text-white font-bold rounded-xl text-lg flex items-center gap-3 animate-scale-in" 
+                style="animation-delay: 0.6s">
+          <span>Masuk ke Dashboard</span>
+          <i class="fas fa-arrow-right text-xl"></i>
+        </button>
+        
+        <p class="text-gray-500 text-sm mt-6 animate-fade-in-up" style="animation-delay: 0.8s">
+          <i class="fas fa-info-circle mr-2"></i>Dashboard ini dikelola oleh SMA Unggulan Haf-Sa Zainul Hasan BPPT Genggong
+        </p>
+      </div>
+      
+      <div class="hero-image flex-1 animate-fade-in-up" style="animation-delay: 0.3s">
+        <div class="welcome-img-container">
+          <img src="https://raw.githubusercontent.com/shohib321/Dashboard-Soshum/refs/heads/main/1000718621-removebg-preview.png" 
+               alt="Ilustrasi Riset Sosial Humaniora" 
+               class="w-full max-w-lg mx-auto">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Dashboard Container (Initially hidden) -->
+  <div id="app" class="h-full w-full flex flex-col overflow-hidden hidden">
    <!-- Header -->
    <header class="glass-header slide-up sticky top-0 z-50 py-5 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
@@ -625,6 +770,26 @@
     const PRESTASI_SHEET_ID = '1-r5AOD55cd85-i3k5g9Ntr3CP8JbVJct7mLyKhbGHOc';
     const PRESTASI_GID = '1836714396';
     
+    // Fungsi untuk masuk ke dashboard
+    function enterDashboard() {
+      const welcomePage = document.getElementById('welcomePage');
+      const app = document.getElementById('app');
+      
+      // Tambahkan efek transisi
+      welcomePage.style.opacity = '0';
+      welcomePage.style.transform = 'scale(0.95)';
+      welcomePage.style.transition = 'all 0.5s ease';
+      
+      setTimeout(() => {
+        welcomePage.style.display = 'none';
+        app.classList.remove('hidden');
+        app.classList.add('fade-in');
+        
+        // Load data dashboard
+        loadDashboardData();
+      }, 500);
+    }
+    
     // Fetch count from Google Sheets using Visualization API
     async function fetchSheetCount(sheetId, gid) {
       try {
@@ -796,30 +961,28 @@
     
     // Initialize on page load
     window.addEventListener('load', () => {
-      // Load data setelah halaman siap
-      setTimeout(loadDashboardData, 500);
+      // Preload gambar
+      const img = new Image();
+      img.src = 'https://raw.githubusercontent.com/shohib321/Dashboard-Soshum/refs/heads/main/1000718621-removebg-preview.png';
       
-      // Tambahkan event listener untuk card hover efek
-      const cards = document.querySelectorAll('.card-hover');
-      cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.zIndex = '10';
-        });
+      // Tambahkan event listener untuk keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        // Enter untuk masuk ke dashboard
+        if (e.key === 'Enter' && !document.getElementById('app').classList.contains('hidden')) {
+          enterDashboard();
+        }
         
-        card.addEventListener('mouseleave', function() {
-          this.style.zIndex = '1';
-        });
+        // Escape untuk kembali dari iframe
+        if (e.key === 'Escape' && document.getElementById('contentView').style.display === 'block') {
+          backToDashboard();
+        }
       });
       
-      // Tambahkan efek parallax pada scroll
-      window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const background = document.querySelector('body');
-        background.style.backgroundPosition = `0px ${scrolled * 0.5}px`;
-      });
+      // Tambahkan event listener untuk klik tombol enter
+      document.querySelector('.btn-enter').addEventListener('click', enterDashboard);
     });
     
-    // Tambahkan keyboard navigation
+    // Tambahkan keyboard navigation untuk dashboard
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && document.getElementById('contentView').style.display === 'block') {
         backToDashboard();
